@@ -1,0 +1,91 @@
+.App {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.search-form form{
+  float: right;
+  border: none;
+  width: 40%;
+}
+
+#moviedb {
+  height: 40px;
+  width: 100px;
+  float: left;
+}
+
+.header {
+  width: 70%;
+  height: 50px;
+  margin: auto;
+  display: block;
+}
+.movie-card {
+  display: inline-block;
+  width: 70%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.movie-poster {
+  width: 40%;
+}
+
+.movie-info {
+  padding-top: 20px;
+  width: 60%;
+  height: 100%;
+  background-color: black;
+  float: right;
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0.8;
+  color: white;
+}
+
+.cyan {
+  color: #00CDCD;
+}
+
+.movie-details p {
+  padding: 0 20px;
+  color: white;
+  text-align: justify;
+}
+.box-office {
+  width: 80%;
+  margin: auto;
+}
+.box-office p {
+  font-size: 1.3em;
+}
+
+.clear {
+  clear: both;
+}
+
+input[type=text] {
+    width: 100%;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    border: none;
+    border-radius: 10px;
+    opacity: 0.8;
+    background-color: black;
+    color: white;
+    height: 40px;
+    font-size:1.2em;
+    border-bottom: 1px solid white;
+
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 100%;
+    outline: none;
+}
