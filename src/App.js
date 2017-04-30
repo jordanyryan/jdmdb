@@ -3,6 +3,8 @@ import './App.css';
 import axios from 'axios';
 import Header from './components/Header'
 import Movie from './components/Movie'
+import $ from 'jquery'
+import Show from './components/Show'
 
 const key = process.env.REACT_APP_MOVIE_KEY
 
@@ -12,8 +14,9 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      searchResults: "",
-      currentMovie: ""
+      searchResults: [],
+      currentMovie: "",
+      visible: false
     }
   }
 
@@ -21,7 +24,8 @@ class App extends Component {
     axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`)
     .then(response => {
       this.setState({currentMovie: response.data})
-      console.log(this.state.currentMovie)
+      this.setState({searchResults: []})
+      document.getElementById("form-search").value = ""
     })
     .catch(error => {
       console.log("error fetching and parsing", error)
@@ -34,23 +38,28 @@ class App extends Component {
 
   searchForm(tag) {
     let newTag = tag.target.value
+      if (newTag == "") {
+        this.setState({visible: false})
+      } else {
     let tagSplit = newTag.split(" ").length > 1 ? newTag.split(" ") : newTag // didn't end up needing 
     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&query=${tagSplit}&page=1&include_adult=false`)
     .then(response => {
-      this.setState({movies: response.data.results.splice(0, 5)})
-      this.setState({currentMovie: this.searchMovie(this.state.movies[0].id)})
-      console.log(this.state.currentMovie)
+      this.setState({searchResults: response.data.results.splice(0, 20), visible: true})
+      console.log("getting called")
     })
     .catch(error => {
       console.log("error fetching and parsing", error)
     })
   }
+  }
 
 
   render() {
+    console.log(this.state.searchResults)
     return (
       <div className="App">
-        <Header search={function(tag) {this.searchForm(tag)}.bind(this) }/>
+        <Header search={function(tag) {this.searchForm(tag)}.bind(this)}/>
+        <Show visible={this.state.visible} results={this.state.searchResults} clickMovie={function(id) {this.searchMovie(id)}.bind(this)}/>
         <Movie movieInfo={this.state.currentMovie}/>
       </div>
     );
@@ -61,6 +70,7 @@ class App extends Component {
     } else {
       document.body.style.backgroundImage = 'url(http://www.officialpsds.com/images/stocks/Floral-Background-stock1936.jpg)'
     }
+
   }
 }
 

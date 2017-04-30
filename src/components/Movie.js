@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Movie extends Component {
   render() {
   let info = this.props.movieInfo
-  let minutes = info.runtime + " minutes" 
+  let minutes = info.runtime ? info.runtime + " minutes" : "Not found"
   let poster = 'https://image.tmdb.org/t/p/w500'+ info.poster_path
   let revenue = "$" + String(info.revenue).replace(/(.)(?=(\d{3})+$)/g,'$1,');
 
