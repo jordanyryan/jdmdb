@@ -8,7 +8,7 @@ import Show from './components/Show'
 
 
 
-
+console.log(process.env.KEY)
 class App extends Component {
   constructor(props){
     super(props)
