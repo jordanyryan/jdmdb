@@ -5,10 +5,10 @@ import Header from './components/Header'
 import Movie from './components/Movie'
 import $ from 'jquery'
 import Show from './components/Show'
-import dotenv from 'dotenv'
+require('dotenv').config()
 
 const MOVIE_KEY = process.env.MOVIE_KEY
-console.log(MOVIE_KEY)
+console.log(process.env)
 class App extends Component {
   constructor(props){
     super(props)
