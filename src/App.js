@@ -6,7 +6,6 @@ import Movie from './components/Movie'
 import $ from 'jquery'
 import Show from './components/Show'
 
-const key = process.env.REACT_APP_MOVIE_KEY
 
 
 
@@ -21,7 +20,7 @@ class App extends Component {
   }
 
   searchMovie(id) {
-    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`)
+    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${KEY}&language=en-US`)
     .then(response => {
       this.setState({currentMovie: response.data})
       this.setState({searchResults: []})
