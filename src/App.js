@@ -6,7 +6,6 @@ import Movie from './components/Movie'
 import $ from 'jquery'
 import Show from './components/Show'
 
-console.log(process.env.REACT_APP_MOVIE)
 class App extends Component {
   constructor(props){
     super(props)
@@ -18,7 +17,7 @@ class App extends Component {
   }
 
   searchMovie(id) {
-    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=1943c5cf3a4e930840d3edd380486fa7&language=en-US`)
+    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIE}&language=en-US`)
     .then(response => {
       this.setState({currentMovie: response.data})
       this.setState({searchResults: []})
@@ -39,7 +38,7 @@ class App extends Component {
         this.setState({visible: false})
       } else {
     let tagSplit = newTag.split(" ").length > 1 ? newTag.split(" ") : newTag // didn't end up needing 
-    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=1943c5cf3a4e930840d3edd380486fa7&language=en-US&query=${tagSplit}&page=1&include_adult=false`)
+    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE}&language=en-US&query=${tagSplit}&page=1&include_adult=false`)
     .then(response => {
       this.setState({searchResults: response.data.results.splice(0, 20), visible: true})
       console.log("getting called")
