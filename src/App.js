@@ -6,6 +6,7 @@ import Movie from './components/Movie'
 import $ from 'jquery'
 import Show from './components/Show'
 
+console.log(process.env.REACT_APP_MOVIE)
 class App extends Component {
   constructor(props){
     super(props)
